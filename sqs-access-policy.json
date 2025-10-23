@@ -1,0 +1,34 @@
+{
+  "Version": "2012-10-17",
+  "Id": "__default_policy_ID",
+  "Statement": [
+    {
+      "Sid": "Stmt1234",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Action": "sqs:SendMessage",
+      "Resource": "arn:aws:sqs:ap-south-1:<ACCOUNT_ID>:queue2",
+      "Condition": {
+        "ArnEquals": {
+          "aws:SourceArn": "arn:aws:lambda:ap-south-1:<ACCOUNT_ID>:mylambda2"
+        }
+      }
+    },
+    {
+      "Sid": "Stmt12345",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "sns.amazonaws.com"
+      },
+      "Action": "sqs:SendMessage",
+      "Resource": "arn:aws:sqs:ap-south-1:<ACCOUNT_ID>:queue1",
+      "Condition": {
+        "ArnLike": {
+          "aws:SourceArn": "arn:aws:sns:ap-south-1:<ACCOUNT_ID>:mytopic"
+        }
+      }
+    }
+  ]
+}
